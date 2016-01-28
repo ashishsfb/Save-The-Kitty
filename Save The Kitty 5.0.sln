@@ -1,0 +1,23 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{B01FA098-501C-A847-C2A3-A5657E394189}") = "Save The Kitty 5.0", "Assembly-CSharp.csproj", "{84C0B5DD-9F67-C1D5-0CB6-75BF41A5D43D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{84C0B5DD-9F67-C1D5-0CB6-75BF41A5D43D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84C0B5DD-9F67-C1D5-0CB6-75BF41A5D43D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84C0B5DD-9F67-C1D5-0CB6-75BF41A5D43D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84C0B5DD-9F67-C1D5-0CB6-75BF41A5D43D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal

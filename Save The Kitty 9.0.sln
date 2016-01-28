@@ -1,0 +1,29 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{C186CCB9-C0F0-7F0C-E638-0A263ADAEA16}") = "Save The Kitty 9.0", "Assembly-CSharp.csproj", "{AC81FB29-C14F-403B-A4B1-71591213D25B}"
+EndProject
+Project("{C186CCB9-C0F0-7F0C-E638-0A263ADAEA16}") = "Save The Kitty 9.0", "Assembly-CSharp-Editor.csproj", "{FC515075-1FFF-B0CD-C2A7-B1D678346C14}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AC81FB29-C14F-403B-A4B1-71591213D25B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC81FB29-C14F-403B-A4B1-71591213D25B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC81FB29-C14F-403B-A4B1-71591213D25B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC81FB29-C14F-403B-A4B1-71591213D25B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC515075-1FFF-B0CD-C2A7-B1D678346C14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC515075-1FFF-B0CD-C2A7-B1D678346C14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC515075-1FFF-B0CD-C2A7-B1D678346C14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC515075-1FFF-B0CD-C2A7-B1D678346C14}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
