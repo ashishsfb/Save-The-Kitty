@@ -11,8 +11,6 @@ public class ObstacleGenerator : MonoBehaviour {
 	public ArrayList generatedObstacles;
 	public bool generatedPowerPellet;
 
-	//min multiplier for the power pellet to be generated
-	public int minMultiplier;
 	float rowDistance;
 
 	public Dictionary<int, int[,]> obstaclePatterns = new Dictionary<int, int[,]> ();
@@ -33,9 +31,13 @@ public class ObstacleGenerator : MonoBehaviour {
 	Vector3 pos;
 	int lane;
 
+	void Awake(){
+		Debug.Log ("Obstacle Generator AWAKE");
+		instance = this;
+	}
+
 	void Start(){
 		Debug.Log ("Obstacle Generator Start");
-		instance = this;
 	}
 
 	// Use this for initialization
@@ -45,7 +47,6 @@ public class ObstacleGenerator : MonoBehaviour {
 		mirrored = 1;
 		rowDistance = 2.5f;
 		generatedPowerPellet = false;
-		minMultiplier = 6;
 		generatedObstacles = new ArrayList();
 
 		if(!obstaclePatterns.ContainsKey(1))
@@ -82,12 +83,10 @@ public class ObstacleGenerator : MonoBehaviour {
 				//generate powerPellet when in danger zone 
 				//and multiplier > 6
 				//the powerPellet has not to be given again in same multiplier level
-				if (obstaclePatterns [currentPattern] [1, j] == 0 && KittyController.instance.inDanzerZone && GameManager.instance.multiplier >= minMultiplier && !generatedPowerPellet) {
-				//if (obstaclePatterns [currentPattern] [1, j] == 0 && CatController.instance.inDanzerZone && GameManager.instance.multiplier >= minMultiplier && !generatedPowerPellet) {
+				if (obstaclePatterns [currentPattern] [1, j] == 0 && KittyController.instance.inDanzerZone && !generatedPowerPellet) {
 					pos = new Vector3 (mirrored * (j-1), transform.position.y, transform.position.z);
 					generatedObstacles.Add ((GameObject)Instantiate (powerPellet, pos, Quaternion.identity));
 					generatedObstacles.Add ((GameObject)Instantiate (powerPellet, pos, Quaternion.identity));
-					minMultiplier++;
 					generatedPowerPellet = true;
 				}
 				//generate a fish with a probability of 1 in 2 when a 0 is there
@@ -115,12 +114,10 @@ public class ObstacleGenerator : MonoBehaviour {
 				//generate powerPellet when in danger zone 
 				//and multiplier > 6
 				//the powerPellet has not to be given again in same multiplier level
-				if (obstaclePatterns [currentPattern] [2, j] == 0 && KittyController.instance.inDanzerZone && GameManager.instance.multiplier >= minMultiplier && !generatedPowerPellet) {
-				//if (obstaclePatterns [currentPattern] [1, j] == 0 && CatController.instance.inDanzerZone && GameManager.instance.multiplier >= minMultiplier && !generatedPowerPellet) {
+				if (obstaclePatterns [currentPattern] [2, j] == 0 && KittyController.instance.inDanzerZone && !generatedPowerPellet) {
 					pos = new Vector3 (mirrored * (j-1), transform.position.y, transform.position.z);
 					generatedObstacles.Add ((GameObject)Instantiate (powerPellet, pos, Quaternion.identity));
 					generatedObstacles.Add ((GameObject)Instantiate (powerPellet, pos, Quaternion.identity));
-					minMultiplier++;
 					generatedPowerPellet = true;
 				}
 

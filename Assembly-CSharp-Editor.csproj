@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{FC515075-1FFF-B0CD-C2A7-B1D678346C14}</ProjectGuid>
+    <ProjectGuid>{DD673871-E8B7-19E6-C1FF-A276A456D81E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp-Editor</AssemblyName>
@@ -68,16 +68,69 @@
      <Compile Include="Assets\GooglePlayGames\Editor\GPGSUtil.cs" />
      <Compile Include="Assets\GooglePlayGames\Editor\NearbyConnectionUI.cs" />
      <Compile Include="Assets\GooglePlayGames\Editor\PlistBuddyHelper.cs" />
+     <Compile Include="Assets\GooglePlayGames\Editor\xcode\Elements.cs" />
+     <Compile Include="Assets\GooglePlayGames\Editor\xcode\Lexer.cs" />
+     <Compile Include="Assets\GooglePlayGames\Editor\xcode\Objects.cs" />
+     <Compile Include="Assets\GooglePlayGames\Editor\xcode\PBXProject.cs" />
+     <Compile Include="Assets\GooglePlayGames\Editor\xcode\Parser.cs" />
+     <Compile Include="Assets\GooglePlayGames\Editor\xcode\Sections.cs" />
+     <Compile Include="Assets\GooglePlayGames\Editor\xcode\Serializer.cs" />
+     <Compile Include="Assets\GooglePlayGames\Editor\xcode\Utils.cs" />
+     <Compile Include="Assets\LunarConsole\Editor\AndroidPlugin.cs" />
+     <Compile Include="Assets\LunarConsole\Editor\Autorun.cs" />
+     <Compile Include="Assets\LunarConsole\Editor\BuildPostProcessor.cs" />
+     <Compile Include="Assets\LunarConsole\Editor\EditorConstants.cs" />
+     <Compile Include="Assets\LunarConsole\Editor\Installer.cs" />
+     <Compile Include="Assets\LunarConsole\Editor\Log.cs" />
+     <Compile Include="Assets\LunarConsole\Editor\MenuItems.cs" />
+     <Compile Include="Assets\LunarConsole\Editor\SimpleJSON.cs" />
+     <Compile Include="Assets\LunarConsole\Editor\Updater.cs" />
+     <Compile Include="Assets\LunarConsole\Editor\Utils.cs" />
+     <Compile Include="Assets\LunarConsole\Editor\XCodeEditor-for-Unity\PBXBuildFile.cs" />
+     <Compile Include="Assets\LunarConsole\Editor\XCodeEditor-for-Unity\PBXBuildPhase.cs" />
+     <Compile Include="Assets\LunarConsole\Editor\XCodeEditor-for-Unity\PBXDictionary.cs" />
+     <Compile Include="Assets\LunarConsole\Editor\XCodeEditor-for-Unity\PBXFileReference.cs" />
+     <Compile Include="Assets\LunarConsole\Editor\XCodeEditor-for-Unity\PBXGroup.cs" />
+     <Compile Include="Assets\LunarConsole\Editor\XCodeEditor-for-Unity\PBXList.cs" />
+     <Compile Include="Assets\LunarConsole\Editor\XCodeEditor-for-Unity\PBXObject.cs" />
+     <Compile Include="Assets\LunarConsole\Editor\XCodeEditor-for-Unity\PBXParser.cs" />
+     <Compile Include="Assets\LunarConsole\Editor\XCodeEditor-for-Unity\PBXProject.cs" />
+     <Compile Include="Assets\LunarConsole\Editor\XCodeEditor-for-Unity\XCBuildConfiguration.cs" />
+     <Compile Include="Assets\LunarConsole\Editor\XCodeEditor-for-Unity\XCConfigurationList.cs" />
+     <Compile Include="Assets\LunarConsole\Editor\XCodeEditor-for-Unity\XCFileOperationQueue.cs" />
+     <Compile Include="Assets\LunarConsole\Editor\XCodeEditor-for-Unity\XCMod.cs" />
+     <Compile Include="Assets\LunarConsole\Editor\XCodeEditor-for-Unity\XCProject.cs" />
+     <Compile Include="Assets\LunarConsole\Editor\XCodeEditor-for-Unity\XCSourceFile.cs" />
+     <Compile Include="Assets\LunarConsole\Editor\XCodeEditor-for-Unity\XCTarget.cs" />
+     <Compile Include="Assets\LunarConsole\Editor\XCodeEditor-for-Unity\XMiniJSON.cs" />
      <None Include="Assets\GooglePlayGames\Editor\Podfile.txt" />
-     <None Include="Assets\Plugins\Android\MainLibProj\AndroidManifest.xml" />
-     <None Include="Assets\GooglePlayGames\Editor\template-GameInfo.txt" />
-     <None Include="Assets\Plugins\IOS\ISN_NativeCore.mm.txt" />
+     <None Include="Assets\Plugins\Android\LunarConsole\res\layout\lunar_layout_console.xml" />
+     <None Include="Assets\LunarConsole\Editor\Android\AndroidManifest.xml" />
+     <None Include="Assets\LunarConsole\Editor\Android\res\values\values.xml" />
+     <None Include="Assets\LunarConsole\Editor\Android\res\layout\lunar_layout_log_details_dialog.xml" />
      <None Include="Assets\Plugins\Versions\MNP_VersionInfo.txt" />
+     <None Include="Assets\LunarConsole\readme.txt" />
+     <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
+     <None Include="Assets\Plugins\Android\LunarConsole\res\layout\lunar_layout_console_log_entry.xml" />
+     <None Include="Assets\LunarConsole\Editor\Android\res\layout\lunar_layout_warning.xml" />
+     <None Include="Assets\Plugins\Android\MainLibProj\AndroidManifest.xml" />
+     <None Include="Assets\Plugins\Android\LunarConsole\res\layout\lunar_layout_warning.xml" />
+     <None Include="Assets\Plugins\Android\LunarConsole\res\anim\lunar_console_slide_out_top.xml" />
+     <None Include="Assets\LunarConsole\Editor\Android\res\anim\lunar_console_slide_in_top.xml" />
+     <None Include="Assets\GooglePlayGames\Editor\template-GameInfo.txt" />
+     <None Include="Assets\Plugins\Android\LunarConsole\AndroidManifest.xml" />
      <None Include="Assets\GooglePlayGames\Editor\template-AndroidManifest.txt" />
+     <None Include="Assets\LunarConsole\Editor\Android\res\layout\lunar_layout_console_log_entry.xml" />
      <None Include="Assets\Plugins\StansAssets\Versions\MNP_VersionInfo.txt" />
+     <None Include="Assets\Plugins\Android\LunarConsole\res\anim\lunar_console_slide_in_top.xml" />
+     <None Include="Assets\LunarConsole\Editor\Android\res\anim\lunar_console_slide_out_top.xml" />
      <None Include="Assets\GooglePlayGames\Editor\template-Constants.txt" />
-     <None Include="Assets\Plugins\IOS\ISN_NativeCore.h.txt" />
+     <None Include="Assets\Plugins\Android\LunarConsole\res\drawable\lunar_console_shape_edit_text.xml" />
+     <None Include="Assets\Plugins\Android\LunarConsole\res\layout\lunar_layout_log_details_dialog.xml" />
+     <None Include="Assets\LunarConsole\Editor\Android\res\drawable\lunar_console_shape_edit_text.xml" />
      <None Include="Assets\Plugins\Android\mobilenativepopups.txt" />
+     <None Include="Assets\LunarConsole\Editor\Android\res\layout\lunar_layout_console.xml" />
+     <None Include="Assets\Plugins\Android\LunarConsole\res\values\values.xml" />
  <Reference Include="UnityEditor.Advertisements">
  <HintPath>E:/Softwares/Unity 5.3/Editor/Data/UnityExtensions/Unity/Advertisements/Editor/UnityEditor.Advertisements.dll</HintPath>
  </Reference>
@@ -103,10 +156,7 @@
  <HintPath>E:/Softwares/Unity 5.3/Editor/Data/UnityExtensions/Unity/TreeEditor/Editor/UnityEditor.TreeEditor.dll</HintPath>
  </Reference>
  <Reference Include="JarResolverLib">
- <HintPath>E:/Unity Projects/Save the Kitty/Save The Kitty 9.0/Assets/GooglePlayGames/Editor/JarResolverLib.dll</HintPath>
- </Reference>
- <Reference Include="WP8PopUps">
- <HintPath>E:/Unity Projects/Save the Kitty/Save The Kitty 9.0/Assets/Plugins/WP8PopUps.dll</HintPath>
+ <HintPath>E:/Unity Projects/HackerEarth/Kitty Trouble/Assets/GooglePlayGames/Editor/JarResolverLib.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Graphs">
  <HintPath>E:/Softwares/Unity 5.3/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
@@ -120,7 +170,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp.csproj">
-      <Project>{AC81FB29-C14F-403B-A4B1-71591213D25B}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
+      <Project>{B107A4AC-6A26-EDBC-52A2-3C014998314C}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

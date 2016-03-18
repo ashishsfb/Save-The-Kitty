@@ -11,10 +11,14 @@ public class AudioManager: MonoBehaviour {
 	public Image soundIcon;
 	public bool isMute;
 
+	void Awake(){
+		Debug.Log ("Audio Manager : AWAKE");
+		instance = this;
+	}
+
 	// Use this for initialization
 	void Start () {
 		Debug.Log ("Audio Manager Start");
-		instance = this;
 		isMute = false;
 		backgroundMusicSource = GetComponent<AudioSource> ();
 	}

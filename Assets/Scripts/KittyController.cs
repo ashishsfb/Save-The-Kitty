@@ -8,10 +8,14 @@ public class KittyController : MonoBehaviour {
 	//booleans controlling cat movement
 	public bool canMoveLeft, canMoveRight, inDanzerZone, gettingPushed, eatenPowerPellet;
 
+	void Awake(){
+		Debug.Log ("KittyController: AWAKE");
+		instance = this;
+	}
+
 	// Use this for initialization
 	void Start () {
-		instance = this;
-
+		Debug.Log ("KittyController: Start");
 		canMoveLeft = true;
 		canMoveRight = true;
 		inDanzerZone = false;
@@ -35,6 +39,15 @@ public class KittyController : MonoBehaviour {
 			gettingPushed = true;
 			float step = Mover.speed * Time.deltaTime;
 			transform.Translate (Vector3.forward * step);
+		}
+
+		if (other.tag.Equals ("patch")) {
+			canMoveLeft = true;
+			canMoveRight = true;
+		}
+
+		if (other.tag.Equals ("limiter")) {
+			eatenPowerPellet = false;
 		}
 	}
 	
@@ -84,7 +97,7 @@ public class KittyController : MonoBehaviour {
 		if (other.gameObject.tag.Equals ("Right")) {
 			canMoveLeft= true;
 		}
-
+		
 		if (other.gameObject.tag.Equals ("dangerZone")) {
 			inDanzerZone = false;
 		}

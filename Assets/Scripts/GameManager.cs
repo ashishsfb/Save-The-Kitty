@@ -3,12 +3,11 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
-
 	public static GameManager instance;
 
 	//scoring
 	public int crushedCount, score, multiplier, milestone;
-	public int fishCount, gameFishCount, bestScore;
+	public int fishCount, gameFishCount, bestScore, gamesPlayed;
 
 	//inGame UI Texts
 	public Text scoreText, multiplierText;
@@ -20,47 +19,86 @@ public class GameManager : MonoBehaviour {
 	public Text mainMenuBestScoreText, mainMenuFishCountText;
 
 	//game states : MainMenu, Play, Paused, GameOver
-	public enum gameStates {MainMenu, Playing, Paused, GameOver};
+	public enum gameStates {MainMenu, AvatarStore, Credits, Tutorials, Playing, Paused, GameOver};
 	public gameStates gameState = gameStates.MainMenu;
 
 	//GameCavases
-	public Canvas mainMenuCanvas, inGameCanvas, pauseCanvas, gameOverCanvas, avatarStoreCanvas;
+	public Canvas mainMenuCanvas, inGameCanvas, pauseCanvas, gameOverCanvas, avatarStoreCanvas, creditsCanvas, tutsCanvas;
 
 	//Kitty gameObject
 	public GameObject kitty;
 
-	public Animator crusherAnimator;
+	public Animator crusherAnimator, multiplierAnimator;
 
 	//CONSOLE >>JUST FOR TESTING
 	public Text consoleText;
 
+	void Awake(){
+		Debug.Log ("GameManager : AWAKE");
+		instance = this;
+	}
+
 	//Sets game state to MainMenu
 	void Start(){
-		Debug.Log ("Game Manager Start");
-		instance = this;
+		Debug.Log ("GameManager Start");
+		//Instantiate the cuurentKittyAvatar from avatar selector itself rather from here
+		//kitty = AvatarSelector.instance.avatars [AvatarSelector.instance.currentAvatar].GetComponent<AvatarObject>().kittyGameObject;
+		//Instantiate (kitty);
+	}
 
+	public void setUp (){
+		Debug.Log ("GameManager : SetUp");
 		//set the fishCount in playerPrefs if it doesn't exists 
-		//else get its value : LATER IN MAIN MENU func
-		if (!PlayerPrefs.HasKey ("fishCount")) {
+		//else get its value 
+		if (!PlayerPrefs.HasKey (GooglePlayManager.instance.currentAccount + "_fishCount")) {
+			PlayerPrefs.SetInt (GooglePlayManager.instance.currentAccount + "_fishCount", 0);
 			fishCount = 0;
-			PlayerPrefs.SetInt ("fishCount", 0);
 		}
+		else {
+			fishCount = PlayerPrefs.GetInt (GooglePlayManager.instance.currentAccount + "_fishCount");
+		}
+
+		//Set fish count text of avatar store
+		AvatarSelector.instance.avatarStoreFishCountText.text = fishCount.ToString();
 
 		//set the bestScore in playerPrefs if it doesn't exists 
-		//else get its value : LATER IN MAIN MENU func
-		if (!PlayerPrefs.HasKey ("bestScore")) {
+		//else get its value 
+		if (!PlayerPrefs.HasKey (GooglePlayManager.instance.currentAccount + "_bestScore")) {
+			PlayerPrefs.SetInt (GooglePlayManager.instance.currentAccount + "_bestScore", 0);
 			bestScore = 0;
-			PlayerPrefs.SetInt ("bestScore", 0);
+		}
+		else {
+			bestScore = PlayerPrefs.GetInt (GooglePlayManager.instance.currentAccount + "_bestScore");
 		}
 
+		//set the gamesPlayed in playerPrefs if it doesn't exists 
+		//else get its value
+		if (!PlayerPrefs.HasKey (GooglePlayManager.instance.currentAccount + "_gamesPlayed")) {
+			PlayerPrefs.SetInt (GooglePlayManager.instance.currentAccount + "_gamesPlayed", 0);
+			gamesPlayed = 0;
+		}
+		else {
+			gamesPlayed = PlayerPrefs.GetInt (GooglePlayManager.instance.currentAccount + "_gamesPlayed");
+		}
 		MainMenu ();
+	}
+
+	public void transferLocalToUser(string currentAccount){
+		//set avatars statuses
+		for(int i = 0; i < AvatarSelector.instance.avatars.Length; i++){
+			PlayerPrefs.SetInt (currentAccount + "_avatar" + i.ToString () + "_status", PlayerPrefs.GetInt ("Local_avatar" + i.ToString () + "_status"));
+		}
+		//set fishCount, bestScore, avatarsBought and gamesPlayed
+		PlayerPrefs.SetInt (currentAccount + "_fishCount", PlayerPrefs.GetInt("Local_fishCount"));
+		PlayerPrefs.SetInt (currentAccount + "_bestScore", PlayerPrefs.GetInt("Local_bestScore"));
+		PlayerPrefs.SetInt (currentAccount + "_avatarsBought", PlayerPrefs.GetInt("Local_avatarsBought"));
+		PlayerPrefs.SetInt (currentAccount + "_gamesPlayed", PlayerPrefs.GetInt("Local_gamesPlayed"));
 	}
 
 	//Handles back button key-press
 	void Update(){
 		//If back key is presses
 		if (Input.GetKeyDown (KeyCode.Escape)) {
-			Debug.Log ("Escaped");
 			switch (GameManager.instance.gameState) {
 			case GameManager.gameStates.Playing: 
 				PauseGame ();
@@ -72,9 +110,14 @@ public class GameManager : MonoBehaviour {
 
 			case GameManager.gameStates.MainMenu: 
 				ShowQuitGamePopUp ();
+				//AndroidDialogAndToastBinding.instance.dialogBoxWithTwoButtons("Exit Game", "Are you sure you want to exit the game?", "Yes", "No", "test_dialog_icon", "Tag 002");
 				break;
 
 			case GameManager.gameStates.GameOver: 
+				MainMenu ();
+				break;
+
+			case GameManager.gameStates.AvatarStore: 
 				MainMenu ();
 				break;
 			}
@@ -88,13 +131,16 @@ public class GameManager : MonoBehaviour {
 		ConveyerBeltMover.instance.speed += 0.02f;
 		crusherAnimator.speed += 0.1f;
 		AudioManager.instance.crusherSource.pitch += 0.05f;
+
+		//Play multiplier inc animation
+		multiplierAnimator.SetTrigger("inc");
 	}
 
 	//After every obstacle is crushed
 	public void IncreaseScore(){
 		//Debug.Log ("Game Manager Inc Score");
-		if (crushedCount == milestone && multiplier < 10) {
-			milestone =  milestone*2;
+		if (crushedCount == milestone && multiplier < 30) {
+			milestone =  milestone + 10;
 			multiplier++;
 			multiplierText.text = "x" + multiplier.ToString ();
 			IncreaseGameSpeed ();
@@ -123,21 +169,37 @@ public class GameManager : MonoBehaviour {
 		pauseCanvas.gameObject.SetActive (false);
 		avatarStoreCanvas.gameObject.SetActive (false);
 		mainMenuCanvas.gameObject.SetActive (true);
+		creditsCanvas.gameObject.SetActive (false);
 		gameState = gameStates.MainMenu;
 
 		//set bestScore and fishCount UI Texts
-		bestScore = PlayerPrefs.GetInt("bestScore");
-		fishCount = PlayerPrefs.GetInt("fishCount");
+		bestScore = PlayerPrefs.GetInt(GooglePlayManager.instance.currentAccount + "_bestScore");
+		fishCount = PlayerPrefs.GetInt(GooglePlayManager.instance.currentAccount + "_fishCount");
 
 		mainMenuBestScoreText.text = "Best Score " + bestScore.ToString ();
 		mainMenuFishCountText.text = fishCount.ToString ();
-
+		AvatarSelector.instance.avatarStoreFishCountText.text = fishCount.ToString ();
 		Time.timeScale = 0;
 	}
 
 	public void ChangeAvatar(){
-		Destroy(KittyController.instance.gameObject);
+		if(KittyController.instance != null)
+			Destroy(KittyController.instance.gameObject);
+
+		kitty = AvatarSelector.instance.avatars [AvatarSelector.instance.currentAvatar].GetComponent<AvatarObject>().kittyGameObject;
 		Instantiate (kitty);
+	}
+
+	public void CreditsPage(){
+		mainMenuCanvas.gameObject.SetActive (false);
+		creditsCanvas.gameObject.SetActive (true);
+		gameState = gameStates.Credits;
+	}
+
+	public void TutsPage(){
+		mainMenuCanvas.gameObject.SetActive (false);
+		tutsCanvas.gameObject.SetActive (true);
+		gameState = gameStates.Tutorials;
 	}
 
 	//As kitty gets destroyed when crushed thus reinstantiate it after game over
@@ -153,18 +215,36 @@ public class GameManager : MonoBehaviour {
 		gameOverCanvas.gameObject.SetActive (true);
 		gameState = gameStates.GameOver;
 
+		//update the number of games played in var and PlayerPrefs THEN
+		//Check for gamesPlayed based achievements
+		gamesPlayed++;
+		PlayerPrefs.SetInt (GooglePlayManager.instance.currentAccount + "_gamesPlayed", gamesPlayed);
+		if (gamesPlayed >= 10) {
+			GooglePlayManager.instance.UnlockAchievement (GPConstants.GPGSIds.achievement_10_games);
+		}
+		if (gamesPlayed >= 50) {
+			GooglePlayManager.instance.UnlockAchievement (GPConstants.GPGSIds.achievement_50_games);
+		}
+		if (gamesPlayed >= 100) {
+			GooglePlayManager.instance.UnlockAchievement (GPConstants.GPGSIds.achievement_100_games);
+		}
+
 		//Set score and fish count in UI and Vars
 		gameOverScoreText.text = score.ToString ();
 		fishCount += gameFishCount;
 		gameOverFishCountText.text = fishCount.ToString ();
+
+		//if high score is made : update bestScore and add it to leaderboards
 		if (score > bestScore) {
 			bestScore = score;
+
+			GooglePlayManager.instance.OnAddScoreToLeaderBorad ();
 		}
 		gameOverBestScoreText.text = "Best Score " + bestScore.ToString();
 
 		//Set BestScore and Fish Cont in Player Prefs
-		PlayerPrefs.SetInt ("bestScore", bestScore);
-		PlayerPrefs.SetInt ("fishCount", fishCount);
+		PlayerPrefs.SetInt (GooglePlayManager.instance.currentAccount + "_bestScore", bestScore);
+		PlayerPrefs.SetInt (GooglePlayManager.instance.currentAccount + "_fishCount", fishCount);
 
 		resetGame ();
 		Time.timeScale = 0;
@@ -193,6 +273,7 @@ public class GameManager : MonoBehaviour {
 	//Sets game state to Playing
 	public void StartGame(){
 		//Debug.Log ("Game Manager StartGame");
+		avatarStoreCanvas.gameObject.SetActive(false);
 		mainMenuCanvas.gameObject.SetActive (false);
 		inGameCanvas.gameObject.SetActive (true);
 		gameState = gameStates.Playing;
@@ -200,6 +281,9 @@ public class GameManager : MonoBehaviour {
 
 		ChangeAvatar ();
 		ObstacleGenerator.instance.StartGenerator();
+
+		AudioManager.instance.backgroundMusicSource.Play ();
+		AudioManager.instance.crusherSource.Play ();
 	}
 
 	//Sets game state to Playing
@@ -215,9 +299,10 @@ public class GameManager : MonoBehaviour {
 	public void resetGame(){
 		//Debug.Log ("Game Manager resetGame");
 		//RESET SPEEDS: obstacles, belt, crusher
-		Mover.speed = 1;
-		ConveyerBeltMover.instance.speed = 0.1f;
-		crusherAnimator.speed = 1;
+		Mover.speed = 2;
+		ConveyerBeltMover.instance.speed = 0.2f;
+		crusherAnimator.speed = 1.5f;
+		AudioManager.instance.crusherSource.pitch = 1.25f;
 
 		//start game with freezed time as we don't want things to move while in main menu state
 		Time.timeScale = 0;
@@ -230,7 +315,7 @@ public class GameManager : MonoBehaviour {
 		score = 0;
 		gameFishCount = 0;
 		multiplier = 1;
-		milestone = 5;
+		milestone = 10;
 		crushedCount = 0;
 
 		if(AudioManager.instance != null)
@@ -257,6 +342,23 @@ public class GameManager : MonoBehaviour {
 	public void OpenAvatarStore(){
 		mainMenuCanvas.gameObject.SetActive (false);
 		avatarStoreCanvas.gameObject.SetActive (true);
+
+		gameState = gameStates.AvatarStore;
+
+		//Set Avatar Store login info and GameOver login info
+		if (Social.localUser.authenticated) {
+			AvatarSelector.instance.avatarStoreLoginInfo.text = "Logged in as: " + GooglePlayManager.instance.userName;
+			AvatarSelector.instance.gameOverLoginInfo.text = "Logged in as: " + GooglePlayManager.instance.userName;
+		}
+		else {
+			if (GooglePlayManager.instance.userName.Equals ("Local")) {
+				AvatarSelector.instance.avatarStoreLoginInfo.text = "Login to connect with Google Play Services";
+				AvatarSelector.instance.gameOverLoginInfo.text = "Login to connect with Google Play Services";
+			} else {
+				AvatarSelector.instance.avatarStoreLoginInfo.text = "Logged in as: " +  GooglePlayManager.instance.userName + "(Locally)";
+				AvatarSelector.instance.gameOverLoginInfo.text = "Logged in as: " +  GooglePlayManager.instance.userName + "(Locally)";
+			}
+		}
 	}
 
 	public void ComingSoon(){

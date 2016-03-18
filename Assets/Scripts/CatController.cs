@@ -100,7 +100,7 @@ public class CatController : MonoBehaviour {
 			}
 
 			//check if eatenPowerPellet
-			if (eatenPowerPellet && !gettingPushed) {
+			if (eatenPowerPellet && !gettingPushed && transform.position.z >= -1) {
 				float step = Mover.speed * Time.deltaTime;
 				transform.Translate (-Vector3.forward * step);
 			}

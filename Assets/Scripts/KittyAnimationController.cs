@@ -19,9 +19,14 @@ public class KittyAnimationController : MonoBehaviour {
 	BoxCollider kittyCollider;
 	AudioSource meowSource;
 
+	void Awake(){
+		Debug.Log ("KittyAnimationController: AWAKE");
+		instance = this;
+	}
+
 	// Use this for initialization
 	void Start () {
-		instance = this;
+		Debug.Log ("KittyAnimationController: START");
 		kittyCollider = KittyController.instance.GetComponent<BoxCollider> ();
 		meowSource = GetComponent<AudioSource>();
 

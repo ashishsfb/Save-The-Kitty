@@ -1,25 +1,11 @@
 fileFormatVersion: 2
-guid: 1d39ac2ef059c7641a7c97f2b14db814
-timeCreated: 1453737191
+guid: 4a9bff4dddb8f4d4385125b053f3515e
+timeCreated: 1454706279
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences:
-  - scoreText: {instanceID: 0}
-  - multiplierText: {instanceID: 0}
-  - gameOverScoreText: {instanceID: 0}
-  - gameOverBestScoreText: {instanceID: 0}
-  - gameOverFishCountText: {instanceID: 0}
-  - mainMenuBestScoreText: {instanceID: 0}
-  - mainMenuFishCountText: {instanceID: 0}
-  - mainMenuCanvas: {instanceID: 0}
-  - inGameCanvas: {instanceID: 0}
-  - pauseCanvas: {instanceID: 0}
-  - gameOverCanvas: {instanceID: 0}
-  - kitty: {instanceID: 0}
-  - crusherAnimator: {instanceID: 0}
-  - consoleText: {instanceID: 0}
-  executionOrder: 150
+  defaultReferences: []
+  executionOrder: 200
   icon: {instanceID: 0}
   userData: 
   assetBundleName: 

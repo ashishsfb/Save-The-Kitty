@@ -1,0 +1,17 @@
+C:\Program Files\Java\jdk1.7.0_40\bin>keytool -exportcert -alias key -keystore "E:\Unity Projects\HackerEarth\Kitty Trouble\Builds\kitty_trouble.keystore" -list -v
+Enter keystore password:
+Alias name: key
+Creation date: Mar 16, 2016
+Entry type: PrivateKeyEntry
+Certificate chain length: 1
+Certificate[1]:
+Owner: O=Game On Studio, CN=Ashish Dubey
+Issuer: O=Game On Studio, CN=Ashish Dubey
+Serial number: 2ce9046c
+Valid from: Wed Mar 16 05:48:29 IST 2016 until: Thu Mar 04 05:48:29 IST 2066
+Certificate fingerprints:
+         MD5:  9A:A0:4A:BA:E0:5C:05:89:1F:6E:0D:02:08:D4:53:86
+         SHA1: 3D:10:2C:F5:32:D7:A9:3C:BD:42:B2:09:92:EE:76:C7:6D:A9:E3:78
+         SHA256: 56:15:02:F2:1F:44:C5:3D:86:0F:95:BF:B8:C9:44:92:F7:D1:67:E8:AF:49:92:6F:B6:BB:3C:14:58:4D:4B:C5
+         Signature algorithm name: SHA1withRSA
+         Version: 3

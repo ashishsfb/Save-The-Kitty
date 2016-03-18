@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{AC81FB29-C14F-403B-A4B1-71591213D25B}</ProjectGuid>
+    <ProjectGuid>{B107A4AC-6A26-EDBC-52A2-3C014998314C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -45,9 +45,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Constant.cs" />
-     <Compile Include="Assets\Extensions\MobileNativePopUps\Example\MNFeaturePreview.cs" />
-     <Compile Include="Assets\Extensions\MobileNativePopUps\Example\MNUseExample.cs" />
      <Compile Include="Assets\Extensions\MobileNativePopUps\Scripts\Core\MNP.cs" />
      <Compile Include="Assets\Extensions\MobileNativePopUps\Scripts\Core\MNPopup.cs" />
      <Compile Include="Assets\Extensions\MobileNativePopUps\Scripts\Core\MobileNativeDialog.cs" />
@@ -59,14 +56,6 @@
      <Compile Include="Assets\Extensions\MobileNativePopUps\Scripts\Platfroms\AndroidImpl\PopUps\MNAndroidDialog.cs" />
      <Compile Include="Assets\Extensions\MobileNativePopUps\Scripts\Platfroms\AndroidImpl\PopUps\MNAndroidMessage.cs" />
      <Compile Include="Assets\Extensions\MobileNativePopUps\Scripts\Platfroms\AndroidImpl\PopUps\MNAndroidRateUsPopUp.cs" />
-     <Compile Include="Assets\Extensions\MobileNativePopUps\Scripts\Platfroms\IOSImpl\PopUps\MNIOSDialog.cs" />
-     <Compile Include="Assets\Extensions\MobileNativePopUps\Scripts\Platfroms\IOSImpl\PopUps\MNIOSMessage.cs" />
-     <Compile Include="Assets\Extensions\MobileNativePopUps\Scripts\Platfroms\IOSImpl\PopUps\MNIOSRateUsPopUp.cs" />
-     <Compile Include="Assets\Extensions\MobileNativePopUps\Scripts\Platfroms\IOSImpl\PopUps\base\MNIOSNative.cs" />
-     <Compile Include="Assets\Extensions\MobileNativePopUps\Scripts\Platfroms\WP8Impl\PopUps\MNWP8Dialog.cs" />
-     <Compile Include="Assets\Extensions\MobileNativePopUps\Scripts\Platfroms\WP8Impl\PopUps\MNWP8Message.cs" />
-     <Compile Include="Assets\Extensions\MobileNativePopUps\Scripts\Platfroms\WP8Impl\PopUps\MNWP8RateUsPopUp.cs" />
-     <Compile Include="Assets\Extensions\MobileNativePopUps\Scripts\Platfroms\WP8Impl\PopUps\base\BaseWP8Popup.cs" />
      <Compile Include="Assets\Extensions\StansAssetsCommon\FileStaticAPI.cs" />
      <Compile Include="Assets\Extensions\StansAssetsCommon\SA_DataConverter.cs" />
      <Compile Include="Assets\Extensions\StansAssetsCommon\SA_IdFactory.cs" />
@@ -74,6 +63,7 @@
      <Compile Include="Assets\Extensions\StansAssetsCommon\SA_Singleton.cs" />
      <Compile Include="Assets\Extensions\StansAssetsCommon\Utilities\Modules\SA_ModulesInfo.cs" />
      <Compile Include="Assets\Extensions\StansAssetsCommon\WWWTextureLoader.cs" />
+     <Compile Include="Assets\GPConstants\GPGSIds.cs" />
      <Compile Include="Assets\GooglePlayGames\BasicApi\Achievement.cs" />
      <Compile Include="Assets\GooglePlayGames\BasicApi\CommonStatusCodes.cs" />
      <Compile Include="Assets\GooglePlayGames\BasicApi\CommonTypes.cs" />
@@ -244,39 +234,61 @@
      <Compile Include="Assets\GooglePlayGames\Platforms\PlayGamesClientFactory.cs" />
      <Compile Include="Assets\GooglePlayGames\Platforms\TokenClient.cs" />
      <Compile Include="Assets\GooglePlayGames\PluginVersion.cs" />
+     <Compile Include="Assets\LunarConsole\Scripts\Constants.cs" />
+     <Compile Include="Assets\LunarConsole\Scripts\LunarConsole.cs" />
+     <Compile Include="Assets\Scripts\AnimationExtensions.cs" />
      <Compile Include="Assets\Scripts\AudioManager.cs" />
+     <Compile Include="Assets\Scripts\AvatarObject.cs" />
      <Compile Include="Assets\Scripts\AvatarSelector.cs" />
      <Compile Include="Assets\Scripts\CatController.cs" />
      <Compile Include="Assets\Scripts\ConveyerBeltMover.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\GenerationController.cs" />
+     <Compile Include="Assets\Scripts\GooglePlayManager.cs" />
      <Compile Include="Assets\Scripts\KittyAnimationController.cs" />
      <Compile Include="Assets\Scripts\KittyAvatar.cs" />
      <Compile Include="Assets\Scripts\KittyController.cs" />
+     <Compile Include="Assets\Scripts\LoadingSpinner.cs" />
      <Compile Include="Assets\Scripts\Mover.cs" />
      <Compile Include="Assets\Scripts\ObstacleCrusher.cs" />
      <Compile Include="Assets\Scripts\ObstacleGenerator.cs" />
      <Compile Include="Assets\Scripts\Rotater.cs" />
      <Compile Include="Assets\Scripts\SceneLoader.cs" />
+     <Compile Include="Assets\Scripts\Share.cs" />
      <Compile Include="Assets\Scripts\TapSound.cs" />
      <None Include="Assets\GooglePlayGames\Editor\Podfile.txt" />
-     <None Include="Assets\Plugins\Android\MainLibProj\AndroidManifest.xml" />
-     <None Include="Assets\GooglePlayGames\Editor\template-GameInfo.txt" />
-     <None Include="Assets\Plugins\IOS\ISN_NativeCore.mm.txt" />
+     <None Include="Assets\Plugins\Android\LunarConsole\res\layout\lunar_layout_console.xml" />
+     <None Include="Assets\LunarConsole\Editor\Android\AndroidManifest.xml" />
+     <None Include="Assets\LunarConsole\Editor\Android\res\values\values.xml" />
+     <None Include="Assets\LunarConsole\Editor\Android\res\layout\lunar_layout_log_details_dialog.xml" />
      <None Include="Assets\Plugins\Versions\MNP_VersionInfo.txt" />
+     <None Include="Assets\LunarConsole\readme.txt" />
+     <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
+     <None Include="Assets\Plugins\Android\LunarConsole\res\layout\lunar_layout_console_log_entry.xml" />
+     <None Include="Assets\LunarConsole\Editor\Android\res\layout\lunar_layout_warning.xml" />
+     <None Include="Assets\Plugins\Android\MainLibProj\AndroidManifest.xml" />
+     <None Include="Assets\Plugins\Android\LunarConsole\res\layout\lunar_layout_warning.xml" />
+     <None Include="Assets\Plugins\Android\LunarConsole\res\anim\lunar_console_slide_out_top.xml" />
+     <None Include="Assets\LunarConsole\Editor\Android\res\anim\lunar_console_slide_in_top.xml" />
+     <None Include="Assets\GooglePlayGames\Editor\template-GameInfo.txt" />
+     <None Include="Assets\Plugins\Android\LunarConsole\AndroidManifest.xml" />
      <None Include="Assets\GooglePlayGames\Editor\template-AndroidManifest.txt" />
+     <None Include="Assets\LunarConsole\Editor\Android\res\layout\lunar_layout_console_log_entry.xml" />
      <None Include="Assets\Plugins\StansAssets\Versions\MNP_VersionInfo.txt" />
+     <None Include="Assets\Plugins\Android\LunarConsole\res\anim\lunar_console_slide_in_top.xml" />
+     <None Include="Assets\LunarConsole\Editor\Android\res\anim\lunar_console_slide_out_top.xml" />
      <None Include="Assets\GooglePlayGames\Editor\template-Constants.txt" />
-     <None Include="Assets\Plugins\IOS\ISN_NativeCore.h.txt" />
+     <None Include="Assets\Plugins\Android\LunarConsole\res\drawable\lunar_console_shape_edit_text.xml" />
+     <None Include="Assets\Plugins\Android\LunarConsole\res\layout\lunar_layout_log_details_dialog.xml" />
+     <None Include="Assets\LunarConsole\Editor\Android\res\drawable\lunar_console_shape_edit_text.xml" />
      <None Include="Assets\Plugins\Android\mobilenativepopups.txt" />
+     <None Include="Assets\LunarConsole\Editor\Android\res\layout\lunar_layout_console.xml" />
+     <None Include="Assets\Plugins\Android\LunarConsole\res\values\values.xml" />
  <Reference Include="UnityEngine.UI">
  <HintPath>E:/Softwares/Unity 5.3/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
  <HintPath>E:/Softwares/Unity 5.3/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
- </Reference>
- <Reference Include="WP8PopUps">
- <HintPath>E:/Unity Projects/Save the Kitty/Save The Kitty 9.0/Assets/Plugins/WP8PopUps.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
